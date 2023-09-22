@@ -82,6 +82,12 @@ export const styles = StyleSheet.create({
     color:'#fff',
     marginTop:2,
     padding:5,
+  },
+  selectedAnswerText:{
+    fontSize:18,
+    color:'black',
+    marginTop:2,
+    padding:5,
   }
   })
 

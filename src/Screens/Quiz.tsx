@@ -1,16 +1,22 @@
 import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React,{useState} from 'react'
 import { styles } from '../Styles/Styling'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const Quiz = (navigation:any) => {
+    const route=useRoute();
+    const sectionNumber=route.params?.section
+    const [selected, setSelected] = useState(false);
+    const updateSelected=()=>{
+        setSelected(true);
+    }
     navigation= useNavigation();
     return (
         <View style={{ backgroundColor: 'green', flex: 1, padding: 10, }}>
             <View style={styles.quizContainer}>
                 <View style={styles.heading}>
                     <Text style={styles.headingText}>
-                        The Alphabet
+                        {route.params?.section}
                     </Text>
                 </View>
                 <View style={{ marginTop: 10, padding: 10, }}>
@@ -18,15 +24,10 @@ const Quiz = (navigation:any) => {
                         <Text style={styles.questionText}>Q. Ramiro es mas guapo</Text>
                     </View>
                     <View style={styles.answers}>
-                        <Text style={styles.answerText}>(a): que  </Text>
-                        <Text style={styles.answerText}>(b): como
-                        </Text>
-                        <Text style={styles.answerText}>
-                            (c): de
-                        </Text>
-                        <Text style={styles.answerText}>
-                            (d): que
-                        </Text>
+                        <TouchableOpacity onPress={updateSelected}><Text style={selected?styles.selectedAnswerText:styles.answerText}>(a): que  </Text></TouchableOpacity>
+                        <TouchableOpacity onPress={updateSelected}><Text style={selected?styles.selectedAnswerText:styles.answerText}>(b): como</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={updateSelected}><Text style={selected?styles.selectedAnswerText:styles.answerText}>(c): de</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={updateSelected}><Text style={selected?styles.selectedAnswerText:styles.answerText}>(d): que</Text></TouchableOpacity>
                     </View>
                 </View>
             </View>
