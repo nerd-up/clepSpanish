@@ -1,14 +1,29 @@
 import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { styles } from '../Styles/Styling'
 import { useNavigation } from '@react-navigation/native'
+import firestore from '@react-native-firebase/firestore'
+import database from '@react-native-firebase/database';
 const Home = () => {
+  interface clepSpanish{
+    sectionNo:string
+  }
+  const [section, setSection]=useState();
+  const loadSections=async()=>{
+    const user = await firestore().collection('clepSpanish').doc('SgebzoKaYf6aP3f3t9Ax').get();
+    console.log(user._data.Drill1);
+    setSection(user._data.Drill1);
+  }
+  
+  useEffect(()=>{
+    loadSections();
+  },[])
     const navigation= useNavigation();
   return (
     <View style={styles.homePageContainer} >
     <View style={styles.headingContainer}><Text style={styles.headingStyle}>Spanish Exam</Text></View>
-      <TouchableOpacity style={styles.moduleBtn} onPress={()=>navigation.navigate('Quiz')}><Text style={styles.selectSectionStyle}>Select Section</Text></TouchableOpacity>
-      <TouchableOpacity style={styles.moduleBtn} onPress={()=>navigation.navigate('Quiz',{section:'Drill 1'})} ><Text style={styles.sectionStyle}>Uno</Text></TouchableOpacity>
+      <Text style={styles.selectSectionStyle}>Select Section</Text>
+      <TouchableOpacity style={styles.moduleBtn} onPress={()=>navigation.navigate('Quiz',{section:'Drill 1'})} ><Text style={styles.sectionStyle}>{section}</Text></TouchableOpacity>
       <TouchableOpacity style={styles.moduleBtn} onPress={()=>navigation.navigate('Quiz',{section:'Drill 2'})} ><Text style={styles.sectionStyle}>Dos</Text></TouchableOpacity>
       <TouchableOpacity style={styles.moduleBtn} onPress={()=>navigation.navigate('Quiz',{section:'Drill 3'})} ><Text style={styles.sectionStyle}>Tres</Text></TouchableOpacity>
       <TouchableOpacity style={styles.moduleBtn} onPress={()=>navigation.navigate('Quiz',{section:'Drill 4'})} ><Text style={styles.sectionStyle}>Quatro</Text></TouchableOpacity>

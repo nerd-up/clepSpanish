@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "15526917824",
+    "project_id": "clepspanish-9fd96",
+    "storage_bucket": "clepspanish-9fd96.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15526917824:android:a5d74ed10847ce17779f25",
+        "android_client_info": {
+          "package_name": "com.clepspanish"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFHFDg-lFykOWGJgKAl0octEUuvG09phE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

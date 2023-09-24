@@ -1,9 +1,20 @@
 import { View, Text, TouchableOpacity } from 'react-native'
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { styles } from '../Styles/Styling'
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native'
+import firestore from '@react-native-firebase/firestore'
+import database from '@react-native-firebase/database';
 
 const Quiz = (navigation:any) => {
+    const loadData=()=>{
+        database()
+        .ref('/sections/Dos/')
+        .once('value')
+        .then(snapshot => {
+          console.log('User data: ', snapshot.val());
+        });
+      }
+      useEffect(()=>{loadData()},[])
     const route=useRoute();
     const sectionNumber=route.params?.section
     const [selected, setSelected] = useState(false);

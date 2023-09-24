@@ -8,7 +8,8 @@ export const styles = StyleSheet.create({
       padding:10,
       alignItems: 'center',
       alignContent: 'center',
-      fontFamily:'Irish Grover'
+      fontFamily:'Irish Grover',
+      justifyContent: 'center'
     },
     headingContainer:{
       padding: 10,
