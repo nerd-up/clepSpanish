@@ -35,8 +35,15 @@ export const styles = StyleSheet.create({
     },
     
     moduleBtn:{
-      margin:2,
+      margin:5,
       padding:5,
+      flex:1,
+      width:'50%',
+      alignItems:'center',
+      borderRadius:15,
+      backgroundColor:'rgba(0,1,0,0.2)',
+      borderWidth:3,
+      borderColor:'white'
     }
     ,
 
@@ -81,14 +88,20 @@ export const styles = StyleSheet.create({
   answerText:{
     fontSize:18,
     color:'#fff',
-    marginTop:2,
-    padding:5,
+    margin:5,
+    padding:10,
+    backgroundColor:'rgba(0,1,0,0.2)',
+    borderRadius:30,
+    borderWidth:1,
   },
   selectedAnswerText:{
     fontSize:18,
-    color:'black',
-    marginTop:2,
-    padding:5,
+    color:'white',
+    margin:5,
+    padding:10,
+    backgroundColor:'rgba(0,1,0,0.5)',
+    borderRadius:30,
+    borderWidth:1,
   }
   })
 

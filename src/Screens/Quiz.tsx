@@ -10,7 +10,7 @@ const Quiz = (navigation:any) => {
     const [score, setScores]=useState(0);
     const [currentQuestionIndex, setCurrentQuestionIndex]=useState(0);
     const [options, setOptions]=useState([]);
-    const setQuestionOptions=()=>{
+    const setQuestionOptions=async()=>{
         let setOption=[]
         if(currentQuestionIndex>=0){
             setOption=dbQuestions[currentQuestionIndex]?.wrongAnswer;
@@ -20,23 +20,26 @@ const Quiz = (navigation:any) => {
             //Sconsole.log(options.length);
         }
     }
-    const setNextQuestion=()=>{
+    const setNextQuestion=async()=>{
         setCurrentQuestionIndex(currentQuestionIndex+1);
         setQuestionOptions();
         setSelected(-1);
     }
-        const loadData=async()=>{
+    const loadData=async()=>{
         const database=firebase.database();
-        const loadSection=database.ref('sections/Uno');
+        const loadSection=await database.ref('sections/Uno');
         loadSection.on('value',(snapshot)=>{
-           const data=snapshot.val();
+           const data= snapshot.val();
            if(data!=null){
             const questions:any=Object.values(data);
-            // console.log(questions);
+            console.log(questions.length);
             setDbQuestions(questions);
             //setQuestionOptions();
-            console.log(dbQuestions.length);
-           } setQuestionOptions();
+            console.log(dbQuestions[0]);
+            setQuestionOptions();
+            console.log(options)
+           } 
+          // console.log(dbQuestions);
         });
        
     }
@@ -70,11 +73,13 @@ const Quiz = (navigation:any) => {
                             </View>
                         </View>
                     </View><View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 100 }}>
-                            <TouchableOpacity onPress={currentQuestionIndex<dbQuestions.length-1 ? setNextQuestion : () => navigation.navigate('Result')}>
+                            <TouchableOpacity onPress={currentQuestionIndex<dbQuestions.length-4 ? setNextQuestion : () => navigation.navigate('Result')}>
                                 <Text style={styles.headingText}>Next</Text>
                             </TouchableOpacity>
                         </View></>
-        :<ActivityIndicator color={'white'}/>
+        : <View style={{flex:1,alignContent:'center',alignItems:'center',justifyContent:'center'}}>
+            <ActivityIndicator color={'white'} size={50}/>
+        </View>
     }    
     </View>
     )
